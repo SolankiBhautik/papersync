@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server'
 import { db } from '@/lib/firebase'
 import { collection, getDocs, addDoc } from 'firebase/firestore'
 
-export async function GET(request: Request) {
+export async function GET() {
   try {
     const entriesRef = collection(db, 'entries');
     const snapshot = await getDocs(entriesRef);
