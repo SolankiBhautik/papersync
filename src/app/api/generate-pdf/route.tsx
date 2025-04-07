@@ -136,7 +136,7 @@ const InvoicePDF = ({ data }: { data: InvoiceData }) => {
   const currentMonth = currentDate.getMonth() + 1; // getMonth() returns 0-11, so add 1 for 1-12
   const currentYear = currentDate.getFullYear()  - 1;
 
-  let financialYearStart, financialYearEnd, assessmentYearStart, assessmentYearEnd;
+  let financialYearStart, financialYearEnd;
 
   // Determine financial year based on the month
   if (currentMonth >= 4) { // April (4) to December (12)
@@ -150,8 +150,8 @@ const InvoicePDF = ({ data }: { data: InvoiceData }) => {
   // Use last two digits for the end year
   const financialYearEndLastTwo = String(financialYearEnd).slice(-2);
   
-  assessmentYearStart = financialYearEnd;
-  assessmentYearEnd = financialYearEnd + 1;
+  const assessmentYearStart = financialYearEnd;
+  const assessmentYearEnd = financialYearEnd + 1;
   
   const assessmentYearEndLastTwo = String(assessmentYearEnd).slice(-2);
   const financialYear = `${financialYearStart}-${financialYearEndLastTwo}`;
