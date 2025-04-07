@@ -209,7 +209,7 @@ const InvoicePDF = ({ data }: { data: InvoiceData }) => {
 
         <View style={{ position: 'absolute', top: 53, left: 27 }}>
           <Image
-            src="https://papersync.vercel.app/mahadev-logo-v.0.4.png"
+            src="https://mahadevaccounting.vercel.app/mahadev-logo-v.0.4.png"
             style={{ height: 100 }}
           />
         </View>
@@ -231,18 +231,27 @@ const InvoicePDF = ({ data }: { data: InvoiceData }) => {
             <Text style={{ padding: 4 }}>{data.name}</Text>
             <Text style={{ padding: 4 }}>{data.address}</Text>
           </View>
-          <View style={styles.invoiceBox}>
-            <View style={{ borderBottomWidth: 1, borderBottomColor: '#000' }}>
-              <Text style={[styles.tableHeader, { padding: 4, borderBottomWidth: 1, borderBottomColor: '#000' }]}>
-                INVOICE NO.
-              </Text>
-              <Text style={{ padding: 4 }}>{data.invoiceNo}</Text>
+
+          {/* Right Column - Invoice Details */}
+          <View style={[{ width: '50%' }, { flexDirection: 'row' }]}>
+            <View style={[{ width: '50%' }]}>
             </View>
-            <View>
-              <Text style={[styles.tableHeader, { padding: 4, borderBottomWidth: 1, borderBottomColor: '#000' }]}>
-                DATE
-              </Text>
-              <Text style={{ padding: 4 }}>{new Date(data.date).toLocaleDateString("en-GB")}</Text>
+            <View style={[{ width: '50%' }, { borderWidth: 1, borderLeftColor: '#000', textAlign: 'center' }]}>
+              {/* Invoice Number */}
+              <View style={[{ borderBottomWidth: 1, borderBottomColor: '#000' }]}>
+                <Text style={[styles.tableHeader, { padding: 4, borderBottomWidth: 1, borderBottomColor: '#000' }]}>
+                  INVOICE NO.
+                </Text>
+                <Text style={{ padding: 4 }}>{data.invoiceNo}</Text>
+              </View>
+
+              {/* Date */}
+              <View>
+                <Text style={[styles.tableHeader, { padding: 4, borderBottomWidth: 1, borderBottomColor: '#000' }]}>
+                  DATE
+                </Text>
+                <Text style={{ padding: 4 }}>{new Date(data.date).toLocaleDateString("en-GB")}</Text>
+              </View>
             </View>
           </View>
         </View>
@@ -318,13 +327,13 @@ const InvoicePDF = ({ data }: { data: InvoiceData }) => {
           RS. IN WORD: {numberToWords(totalAmount)}
         </Text>
 
-        <View style={{ position: 'absolute', left: 80, bottom: 120  }}>
-          <Text style={{ fontSize: 10}}>FOR JAYESH I PANDYA</Text>
+        <View style={{ position: 'absolute', left: 80, bottom: 120 }}>
+          <Text style={{ fontSize: 10 }}>FOR JAYESH I PANDYA</Text>
         </View>
 
-        <View style={{ position: 'absolute', left: 250, bottom: 50  }}>
+        <View style={{ position: 'absolute', left: 250, bottom: 50 }}>
           <Image
-            src="https://papersync.vercel.app/qrcodev3.png"
+            src="https://mahadevaccounting.vercel.app/qrcodev3.png"
             style={{ height: 60, }}
           />
         </View>
