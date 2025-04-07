@@ -15,6 +15,7 @@ export default function Home() {
     taxationFees: '0',
     otherCharges: '0',
     paymentType: '',
+    paymentDate: '',
   })
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -186,6 +187,19 @@ export default function Home() {
               <option value="online">online</option>
               </select>
           </div>
+
+
+          <div>
+            <label className="block text-sm font-medium mb-1">Payment Received Date</label>
+            <input
+              type="date"
+              required
+              className="w-full bg-zinc-700 border border-gray-600 rounded-md p-2 text-white"
+              value={formData.paymentDate}
+              onChange={(e) => setFormData({ ...formData, paymentDate: e.target.value })}
+            />
+          </div>
+          
  
           <div className="flex justify-end space-x-4">
             <button

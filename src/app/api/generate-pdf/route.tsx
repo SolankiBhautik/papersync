@@ -123,6 +123,7 @@ interface InvoiceData {
   taxationFees: number
   otherCharges: number
   paymentType?: string // Added to handle payment type
+  paymentDate?: Date
 }
 
 const InvoicePDF = ({ data }: { data: InvoiceData }) => {
@@ -337,6 +338,11 @@ const InvoicePDF = ({ data }: { data: InvoiceData }) => {
           <Text style={{ textAlign: 'center', padding: 4, borderBottomWidth: 1, borderBottomColor: '#000' }}>RECEIVED & CREDITED</Text>
           <Text style={{ textAlign: 'center', marginTop: 10 }}>
             {data.paymentType === 'online' ? 'Online' : data.paymentType === 'cash' ? 'Cash' : ''}
+          </Text>
+          <Text style={{ textAlign: 'center', marginTop: 10 }}>
+            {(data.paymentType && data.paymentDate) ? (<>
+              {new Date(data.paymentDate).toLocaleDateString("en-GB")}
+            </>) : ('')}
           </Text>
         </View>
 
