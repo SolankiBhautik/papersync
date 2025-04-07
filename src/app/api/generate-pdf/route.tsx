@@ -323,7 +323,7 @@ const InvoicePDF = ({ data }: { data: InvoiceData }) => {
 
         <View style={{ position: 'absolute', left: 250, bottom: 50  }}>
           <Image
-            src="http://localhost:3000/qrcodev3.png"
+            src="https://papersync.vercel.app/qrcodev3.png"
             style={{ height: 120, }}
           />
         </View>
