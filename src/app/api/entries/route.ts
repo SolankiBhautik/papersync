@@ -4,44 +4,27 @@ import { collection, query, where, orderBy, limit, getDocs, addDoc } from 'fireb
 
 export async function GET(request: Request) {
   try {
-    const { searchParams } = new URL(request.url)
-    // const page = parseInt(searchParams.get('page') || '1')
-    const limitNum = parseInt(searchParams.get('limit') || '10')
-    const search = searchParams.get('search') || ''
-    const sortField = searchParams.get('sortField') || 'date'
-    const sortOrder = (searchParams.get('sortOrder') || 'desc') as 'asc' | 'desc'
-
-    const entriesRef = collection(db, 'entries')
-    let q = query(entriesRef, orderBy(sortField, sortOrder), limit(limitNum))
-
-    if (search) {
-      q = query(q, 
-        where('name', '>=', search),
-        where('name', '<=', search + '\uf8ff')
-      )
-    }
-
-    const snapshot = await getDocs(q)
+    const entriesRef = collection(db, 'entries');
+    const snapshot = await getDocs(entriesRef);
     const entries = snapshot.docs.map(doc => ({
       id: doc.id,
       ...doc.data()
-    }))
+    }));
 
     // Get total count
-    const totalSnapshot = await getDocs(collection(db, 'entries'))
-    const totalCount = totalSnapshot.size
+    const totalSnapshot = await getDocs(collection(db, 'entries'));
+    const totalCount = totalSnapshot.size;
 
     return NextResponse.json({
       entries,
       totalCount,
-      totalPages: Math.ceil(totalCount / limitNum)
-    })
+    });
   } catch (error) {
-    console.error('Error fetching entries:', error)
+    console.error('Error fetching entries:', error);
     return NextResponse.json(
       { error: 'Error fetching entries' },
       { status: 500 }
-    )
+    );
   }
 }
 
