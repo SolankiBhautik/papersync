@@ -127,10 +127,35 @@ interface InvoiceData {
 }
 
 const InvoicePDF = ({ data }: { data: InvoiceData }) => {
-  const currentYear = Number(new Date().getFullYear().toString().slice(-2));
-  const previousYear = currentYear - 1;
-  const financialYear = `${previousYear - 1}-${previousYear}`;
-  const assessmentYear = `${previousYear}-${currentYear}`;
+  // const currentYear = Number(new Date().getFullYear().toString().slice(-2));
+  // const previousYear = currentYear - 1;
+  // const financialYear = `${previousYear - 1}-${previousYear}`;
+  // const assessmentYear = `${previousYear}-${currentYear}`;
+
+  const currentDate = new Date(); // Current date is April 07, 2025
+  const currentMonth = currentDate.getMonth() + 1; // getMonth() returns 0-11, so add 1 for 1-12
+  const currentYear = currentDate.getFullYear()  - 1;
+
+  let financialYearStart, financialYearEnd, assessmentYearStart, assessmentYearEnd;
+
+  // Determine financial year based on the month
+  if (currentMonth >= 4) { // April (4) to December (12)
+    financialYearStart = currentYear;
+    financialYearEnd = currentYear + 1;
+  } else { // January (1) to March (3)
+    financialYearStart = currentYear - 1;
+    financialYearEnd = currentYear;
+  }
+
+  // Use last two digits for the end year
+  const financialYearEndLastTwo = String(financialYearEnd).slice(-2);
+  
+  assessmentYearStart = financialYearEnd;
+  assessmentYearEnd = financialYearEnd + 1;
+  
+  const assessmentYearEndLastTwo = String(assessmentYearEnd).slice(-2);
+  const financialYear = `${financialYearStart}-${financialYearEndLastTwo}`;
+  const assessmentYear = `${assessmentYearStart}-${assessmentYearEndLastTwo}`;
 
   const totalAmount = (
     data.accountingFees +
