@@ -127,14 +127,9 @@ interface InvoiceData {
 }
 
 const InvoicePDF = ({ data }: { data: InvoiceData }) => {
-  // const currentYear = Number(new Date().getFullYear().toString().slice(-2));
-  // const previousYear = currentYear - 1;
-  // const financialYear = `${previousYear - 1}-${previousYear}`;
-  // const assessmentYear = `${previousYear}-${currentYear}`;
-
   const currentDate = new Date(); // Current date is April 07, 2025
   const currentMonth = currentDate.getMonth() + 1; // getMonth() returns 0-11, so add 1 for 1-12
-  const currentYear = currentDate.getFullYear()  - 1;
+  const currentYear = currentDate.getFullYear()  - 1; // get the last year
 
   let financialYearStart, financialYearEnd;
 
