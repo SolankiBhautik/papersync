@@ -347,7 +347,7 @@ const InvoicePDF = ({ data }: { data: InvoiceData }) => {
           RS. IN WORD: {numberToWords(totalAmount)}
         </Text>
 
-        <View style={{ position: 'absolute', left: 80, bottom: 120 }}>
+        <View style={{ position: 'absolute', left: 80, bottom: 110 }}>
           <Text style={{ fontSize: 10 }}>FOR JAYESH I PANDYA</Text>
         </View>
 
